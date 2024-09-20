@@ -25,13 +25,13 @@ export async function POST(request: Request) {
     })
 
     // Filter out the system message
-    // const filteredMessages = messages.filter(
-    //   message => message.role !== "system"
-    // )
+    const filteredMessages = messages.filter(
+      message => message.role !== "system"
+    )
 
     const response = await openai.chat.completions.create({
       model: chatSettings.model as ChatCompletionCreateParamsBase["model"],
-      messages: messages as ChatCompletionCreateParamsBase["messages"],
+      messages: filteredMessages as ChatCompletionCreateParamsBase["messages"],
       temperature: chatSettings.temperature,
       max_tokens:
         chatSettings.model === "gpt-4-vision-preview" ||
