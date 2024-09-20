@@ -49,7 +49,10 @@ export async function POST(request: Request) {
     })
 
     // Instead of using OpenAIStream, we'll directly return the response
-    return new Response(JSON.stringify(response.choices[0].message.content), {
+    const content = response.choices[0].message.content.trim()
+    const trimmedContent = content.replace(/^["']|["']$/g, "")
+
+    return new Response(JSON.stringify(trimmedContent), {
       headers: { "Content-Type": "application/json" }
     })
   } catch (error: any) {
