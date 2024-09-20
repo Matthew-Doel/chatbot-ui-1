@@ -25,9 +25,9 @@ export async function POST(request: Request) {
     })
 
     // Filter out the system message
-    const filteredMessages = messages.filter(
-      message => message.role !== "system"
-    )
+    // const filteredMessages = messages.filter(
+    //   message => message.role !== "system"
+    // )
 
     const response = await openai.chat.completions.create({
       model: chatSettings.model as ChatCompletionCreateParamsBase["model"],
