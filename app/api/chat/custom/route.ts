@@ -43,9 +43,9 @@ export async function POST(request: Request) {
 
     const response = await custom.chat.completions.create({
       model: chatSettings.model as ChatCompletionCreateParamsBase["model"],
-      messages: filteredMessages as ChatCompletionCreateParamsBase["messages"],
-      //temperature: chatSettings.temperature,
-      stream: true
+      messages: filteredMessages as ChatCompletionCreateParamsBase["messages"]
+      //,temperature: chatSettings.temperature,
+      //stream: true
     })
 
     const stream = OpenAIStream(response)
