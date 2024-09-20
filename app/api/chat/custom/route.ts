@@ -37,9 +37,13 @@ export async function POST(request: Request) {
       baseURL: customModel.base_url
     })
 
+    const filteredMessages = messages.filter(
+      message => message.role !== "system"
+    )
+
     const response = await custom.chat.completions.create({
       model: chatSettings.model as ChatCompletionCreateParamsBase["model"],
-      messages: messages as ChatCompletionCreateParamsBase["messages"],
+      messages: filteredMessages as ChatCompletionCreateParamsBase["messages"],
       temperature: chatSettings.temperature,
       stream: true
     })
