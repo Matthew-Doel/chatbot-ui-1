@@ -48,9 +48,10 @@ export async function POST(request: Request) {
       //stream: true
     })
 
-    const stream = OpenAIStream(response)
-
-    return new StreamingTextResponse(stream)
+    // Instead of using OpenAIStream, we'll directly return the response
+    return new Response(JSON.stringify(response.choices[0].message), {
+      headers: { "Content-Type": "application/json" }
+    })
   } catch (error: any) {
     let errorMessage = error.message || "An unexpected error occurred"
     const errorCode = error.status || 500
