@@ -47,12 +47,9 @@ export async function POST(request: Request) {
       //,temperature: chatSettings.temperature,
       //stream: true
     })
-    // Parse the content if it's a string, otherwise use it as is
-    const content =
-      typeof response.choices[0].message.content === "string"
-        ? JSON.parse(response.choices[0].message.content)
-        : response.choices[0].message.content
-    return new Response(JSON.stringify({ content }), {
+
+    // Instead of using OpenAIStream, we'll directly return the response
+    return new Response(JSON.stringify(response.choices[0].message.content), {
       headers: { "Content-Type": "application/json" }
     })
   } catch (error: any) {
