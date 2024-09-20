@@ -55,7 +55,7 @@ export async function POST(request: Request) {
     const content = response.choices[0].message?.content || ""
     const trimmedContent = content.trim().replace(/^["']|["']$/g, "")
 
-    return new Response(JSON.stringify(trimmedContent), {
+    return new Response(trimmedContent, {
       headers: { "Content-Type": "application/json" }
     })
   } catch (error: any) {
