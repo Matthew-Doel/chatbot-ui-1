@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     const response = await custom.chat.completions.create({
       model: chatSettings.model as ChatCompletionCreateParamsBase["model"],
       messages: filteredMessages as ChatCompletionCreateParamsBase["messages"],
-      temperature: chatSettings.temperature,
+      //temperature: chatSettings.temperature,
       stream: true
     })
 
